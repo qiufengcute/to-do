@@ -17,9 +17,9 @@ if check_file_exists_in_folder(target_folder, file_to_check):
         except:
             op = []
 else:
-    with open(opp,'w',encoding='utf-8') as file:
-        file.write('')
     op = []
+    with open(opp,'w',encoding='utf-8') as file:
+        json.dump(op,file)
 
 while True:
     x = str(input('请选择你的操作(1.添加待办事项 2.查看待办事项 3.删除待办事项 4.退出)'))
@@ -32,8 +32,8 @@ while True:
             for i in range(len(op)):
                 print(op[i])
     elif x == '1':
-        jop = str(input('请输入待办事项(n取消)'))
-        if jop == 'n':
+        jop = str(input('请输入待办事项(什么都不输取消)'))
+        if jop == '' or jop.isspace():
             print('已取消')
         else:
             op.append(jop)
